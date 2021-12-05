@@ -3,6 +3,7 @@ package ru.netology.daohiber.service;
 import ru.netology.daohiber.entity.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PersonsService {
 
@@ -16,6 +17,6 @@ public interface PersonsService {
 
     List<Person> getPersonsWhereYoungerThenAge(Integer age);
 
-    Person getPersonByNameAndSurname(String name, String surname);
+    List <Person> getPersonByNameAndSurname(String name, String surname);
 
 }

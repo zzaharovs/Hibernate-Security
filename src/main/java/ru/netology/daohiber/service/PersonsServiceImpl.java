@@ -1,6 +1,8 @@
 package ru.netology.daohiber.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.netology.daohiber.entity.Person;
 import ru.netology.daohiber.entity.PersonAlreadyExistsException;
@@ -9,6 +11,8 @@ import ru.netology.daohiber.repo.PersonsRepo;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -48,17 +52,18 @@ public class PersonsServiceImpl implements PersonsService {
 
     @Override
     public List<Person> getPersonsByCity(String city) {
-        return personsRepo.findByCityOfLiving(city);
+        return personsRepo.findByCity(city);
     }
 
     @Override
     public List<Person> getPersonsWhereYoungerThenAge(Integer age) {
-        return personsRepo.findByPersonIdAgeLessThanOrderByPersonIdAge(age);
+        return personsRepo.findByAge(age);
     }
 
     @Override
-    public Person getPersonByNameAndSurname(String name, String surname) {
-        return personsRepo.findTopByPersonIdNameAndPersonIdSurname(name, surname)
-                .orElseThrow(() -> new ResultNotFoundException("Result Not Found"));
+    public List <Person> getPersonByNameAndSurname(String name, String surname) {
+        return personsRepo.findByNameAndSurname(name, surname).stream()
+                .map(x -> x.orElseThrow(() -> new ResultNotFoundException("Person not found")))
+                .collect(Collectors.toList());
     }
 }

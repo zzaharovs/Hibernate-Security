@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -46,7 +47,7 @@ public class PersonController {
     }
 
     @GetMapping("/persons/by-name-and-surname")
-    public Person getPersonByNameAndSurname(@NotBlank String name, @NotBlank String surname) {
+    public List <Person> getPersonByNameAndSurname(@NotBlank String name, @NotBlank String surname) {
         return personsService.getPersonByNameAndSurname(name, surname);
     }
 }
