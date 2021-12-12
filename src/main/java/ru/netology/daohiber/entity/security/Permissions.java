@@ -20,6 +20,4 @@ public class Permissions implements Serializable {
     @ManyToOne
     private Role role;
 
-
-
 }

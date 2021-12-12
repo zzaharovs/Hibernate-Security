@@ -19,7 +19,4 @@ public class CustomUser {
     @Column(nullable = false)
     private String password;
 
-//    @OneToOne
-//    private UserRoles userRoles;
-
 }

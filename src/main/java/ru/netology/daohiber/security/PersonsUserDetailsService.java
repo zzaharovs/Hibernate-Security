@@ -1,7 +1,6 @@
 package ru.netology.daohiber.security;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
