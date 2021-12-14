@@ -1,5 +1,5 @@
 insert into users (username, password)
-values ('adminss', 'adminpass');
+values ('admin', 'adminpass');
 insert into users (username, password)
 values ('user', 'userpass');
 insert into roles (role_name)
