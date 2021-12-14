@@ -3,6 +3,7 @@ package ru.netology.daohiber.controller;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import ru.netology.daohiber.entity.PersonAlreadyExistsException;
 import ru.netology.daohiber.entity.ResultNotFoundException;
@@ -21,6 +22,13 @@ public class ExceptionHandler {
     public ResponseEntity<String> handleEmptyException(PersonAlreadyExistsException ex) {
 
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.OK);
+
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<String> handleAccessException(AccessDeniedException ex) {
+
+        return new ResponseEntity<String>("Доступ запрещен", HttpStatus.FORBIDDEN);
 
     }
 

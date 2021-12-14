@@ -34,7 +34,7 @@ public class PersonsUserDetailsService implements UserDetailsService {
 
         List<SimpleGrantedAuthority> authorities =
                 userPermissionsRepo.getPermissionsByUserName(customUser.getUsername()).stream()
-                        .map(x -> new SimpleGrantedAuthority(x.getPermissionName()))
+                        .map(x -> new SimpleGrantedAuthority("ROLE_" + x.getPermissionName()))
                         .collect(Collectors.toList());
 
         String password = encoder.encode(customUser.getPassword());

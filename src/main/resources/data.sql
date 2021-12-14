@@ -11,7 +11,7 @@ values ('CREATE', 'ADMIN');
 insert into permissions (permission_name, role_role_name)
 values ('DELETE', 'ADMIN');
 insert into permissions (permission_name, role_role_name)
-values ('UPDATE', 'ADMIN');
+values ('WRITE', 'ADMIN');
 insert into permissions (permission_name, role_role_name)
 values ('READ', 'ADMIN');
 insert into permissions (permission_name, role_role_name)
