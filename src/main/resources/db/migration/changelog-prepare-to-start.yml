@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-schema
+      author: zakharov
+      runAlways: false
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            endDelimiter: ;
+            path: prepare-to-start/create-schema.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: true
+  - changeSet:
+      id: insert-data
+      author: zakharov
+      runAlways: false
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            endDelimiter: ;
+            path: prepare-to-start/insert-data.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: true
