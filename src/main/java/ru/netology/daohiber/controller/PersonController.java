@@ -2,6 +2,7 @@ package ru.netology.daohiber.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -42,15 +43,17 @@ public class PersonController {
         return personsService.updatePerson(person);
     }
 
-    @Secured(value = {"ROLE_READ"})
+    @Secured(value = {"ROLE_READ"}) //старая реализация в спринге
     @GetMapping("/persons/by-city")
     public List<Person> getPersonsByCity(@NotBlank String city) {
         return personsService.getPersonsByCity(city);
     }
 
-    @PreAuthorize("hasRole('READ')")
     @GetMapping("/persons/by-age")
+//    @PreAuthorize("hasAuthority('ROLE_READ')")
+    @PreAuthorize("hasAnyAuthority('ROLE_READ, ROLE_DELETE')")
     public List<Person> getPersonsWhereYoungerThenAge(@Min(0) Integer age) {
+        System.out.printf("username");
         return personsService.getPersonsWhereYoungerThenAge(age);
     }
 

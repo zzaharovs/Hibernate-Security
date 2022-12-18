@@ -28,6 +28,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.formLogin().and()
                 .authorizeRequests().antMatchers("/hello").permitAll()
                 .and()
+                .authorizeRequests().antMatchers("/delete").hasAuthority("ROLE_DELETE")
+                .and()
                 .authorizeRequests().anyRequest().authenticated();
     }
 
